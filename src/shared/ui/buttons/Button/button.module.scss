@@ -1,0 +1,19 @@
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--border-radius);
+	height: 60px;
+	font-size: 2rem;
+}
+
+.default {
+	background-color: var(--bg-primary);
+	color: var(--text-secondary);
+	border: 1px solid var(--bg-secondary);
+}
+
+.filled {
+	background-color: var(--bg-secondary);
+	color: var(--text-tertiary);
+}

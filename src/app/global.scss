@@ -1,12 +1,11 @@
-import { createGlobalStyle } from 'styled-components'
-
-export const GlobalStyles = createGlobalStyle`
 :root {
-	--bg-primary: #fff;
-	--bg-secondary: #fff;
+	--bg-primary: #212121;
+	--bg-secondary: #a9a9a9;
 	--text-primary: #fff;
-	--text-secondary: #fff;
-	--border-radius: 1rem;
+	--text-secondary: #a9a9a9;
+	--text-tertiary: #212121;
+	--text-danger: #c51313;
+	--border-radius: 4px;
 	--shadow: 0px 8px 24px -16px rgba(0, 0, 0, 0.15);
 }
 
@@ -17,6 +16,7 @@ export const GlobalStyles = createGlobalStyle`
 	margin: 0;
 	padding: 0;
 	border: none;
+	font-family: var(--font-primary);
 	font-size: 62.5%;
 	font-weight: 400;
 	line-height: 150%;
@@ -26,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
 body {
 	background-color: var(--bg-primary);
 	overflow-x: hidden;
+	height: 100vh;
 }
 
 a,
@@ -67,8 +68,10 @@ svg {
 	max-width: 100%;
 	height: auto;
 }
-ul,ol{
-    list-style: none;
+
+ul,
+ol {
+	list-style: none;
 }
 
 input,
@@ -108,6 +111,3 @@ button::-moz-focus-inner {
 label {
 	cursor: pointer;
 }
-
-
-`

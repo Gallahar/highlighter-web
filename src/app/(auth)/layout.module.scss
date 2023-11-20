@@ -1,0 +1,45 @@
+.layout {
+	height: 100%;
+	display: grid;
+	grid-template-columns: minmax(500px, 1fr) 1fr;
+	background-color: var(--bg-primary);
+
+	.leftBlock {
+		display: flex;
+		flex-direction: column;
+
+		padding: 62px 40px;
+
+		.header {
+			display: flex;
+			flex-direction: column;
+			gap: 48px;
+			padding-bottom: 96px;
+		}
+
+		.pageWrapper {
+			max-width: 460px;
+			width: 100%;
+			margin-inline: auto;
+		}
+
+		.footer {
+			margin-top: auto;
+			display: flex;
+			flex-direction: column;
+			gap: 36px;
+			.copyright {
+				color: var(--text-secondary);
+				font-size: 1.5rem;
+				letter-spacing: 0.6px;
+			}
+		}
+	}
+
+	.rightBlock {
+		background-image: url('/images/auth/auth-bg.webp');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: 0 0;
+	}
+}
