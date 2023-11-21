@@ -5,4 +5,7 @@ export const localStorageService = {
 	setUserEmail: (email: string) => {
 		localStorage.setItem('email', email)
 	},
+	removeUserEmail: () => {
+		localStorage.removeItem('email')
+	},
 }

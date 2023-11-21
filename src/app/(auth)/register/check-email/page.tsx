@@ -34,7 +34,7 @@ export default function CheckEmail() {
 					.json<{ email: string; username: string }>()
 				setUserData(data)
 			} catch (error) {
-				if (error instanceof HTTPError) {
+				if (error instanceof HTTPError && error.response.status === 404) {
 					router.push('/register')
 				} else if (error instanceof HTTPError && error.name === 'ServerError') {
 					setError(error.message)
@@ -44,6 +44,8 @@ export default function CheckEmail() {
 			}
 		}
 		fetchUser()
+
+		return () => localStorageService.removeUserEmail()
 	}, [])
 
 	const handleSendAgain = async () => {
