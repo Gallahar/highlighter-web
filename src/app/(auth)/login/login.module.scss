@@ -1,0 +1,21 @@
+.login {
+	> h1 {
+		text-align: center;
+	}
+
+	.linkSection {
+		margin-top: 24px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 36px;
+
+		p {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+		}
+	}
+}

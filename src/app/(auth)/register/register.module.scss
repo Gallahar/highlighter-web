@@ -1,0 +1,14 @@
+.register {
+	> h1 {
+		text-align: center;
+	}
+
+	> p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+		margin-inline: auto;
+		margin-top: 24px;
+	}
+}
