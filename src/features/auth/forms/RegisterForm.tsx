@@ -13,7 +13,8 @@ export const RegisterForm = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isLoading },
+		formState: { errors },
+		setError,
 	} = useForm<RegisterDto>({
 		mode: 'onChange',
 		reValidateMode: 'onBlur',
@@ -27,7 +28,19 @@ export const RegisterForm = () => {
 			localStorageService.setUserEmail(dto.email)
 			router.push('register/check-email')
 		} else {
-			alert(message)
+			if (message.includes('Email is already used.')) {
+				setError('email', {
+					message: Array.isArray(message)
+						? message.find((e) => e === 'Email is already used.')
+						: message,
+				})
+			} else if (message.includes('Username is already used.')) {
+				setError('username', {
+					message: Array.isArray(message)
+						? message.find((e) => e === 'Username is already used.')
+						: message,
+				})
+			}
 		}
 
 		//toaster here, and redirect only if error is false, remove else statement.
@@ -40,7 +53,7 @@ export const RegisterForm = () => {
 				type='email'
 				error={errors.email?.message}
 				{...register('email', {
-					required: 'email is required',
+					required: 'Email is required',
 					pattern: {
 						value: emailRegexp,
 						message: 'Incorrect format of email',
@@ -52,7 +65,7 @@ export const RegisterForm = () => {
 				type='text'
 				error={errors.username?.message}
 				{...register('username', {
-					required: 'name is required',
+					required: 'Name is required',
 					minLength: {
 						value: 4,
 						message: 'Name should be at least 4th length ',
@@ -64,15 +77,15 @@ export const RegisterForm = () => {
 				type='password'
 				error={errors.password?.message}
 				{...register('password', {
-					required: 'password is required',
+					required: 'Password is required',
 					minLength: {
 						value: 8,
-						message: 'password should be at least 8th length',
+						message: 'Password should be at least 8th length',
 					},
 				})}
 			/>
 			<Button type='submit' variant='filled'>
-				{isLoading ? 'Processing' : 'Create'}
+				Create
 			</Button>
 		</form>
 	)

@@ -15,14 +15,15 @@ const baseApi = ky.create({
 					let messages
 					let consoleMessages
 					if (Array.isArray(data)) {
+						logger.success('true')
 						consoleMessages = data.join('\n')
-						messages = data.join(' ')
+						messages = data.join('#')
 					} else {
 						consoleMessages = data
 						messages = data
 					}
 					logger.error(
-						`${error.message}\nError messages from server:\n${messages}`
+						`${error.response.statusText}\nError messages from server:\n${consoleMessages}`
 					)
 					error.name = 'ServerError'
 					error.message = messages

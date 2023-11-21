@@ -23,7 +23,8 @@ export default async function EmailConfirmation({
 		text = 'Your account was successfully activated'
 	} catch (error) {
 		message = 'Something went wrong!'
-		text = validateServerError(error)
+		const errors = validateServerError(error)
+		text = Array.isArray(errors) ? errors.join('\n') : errors
 	}
 
 	return (

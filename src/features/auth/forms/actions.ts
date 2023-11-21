@@ -6,11 +6,11 @@ import { RegisterDto } from '@/shared/types/user.interface'
 
 export async function registerUser(dto: RegisterDto) {
 	try {
-		const response = await authApi
+		await authApi
 			.post('register', {
 				json: dto,
 			})
-			.json<{ email: string; username: string }>()
+			.json()
 
 		return {
 			error: false,
