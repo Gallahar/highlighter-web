@@ -12,9 +12,11 @@ export async function registerUser(dto: RegisterDto) {
 			})
 			.json<{ email: string; username: string }>()
 
-		return response
+		return {
+			error: false,
+			message: 'User was created!',
+		}
 	} catch (error) {
-		await new Promise((res) => setTimeout(() => res('dsds'), 5000))
-		return validateServerError(error)
+		return { error: true, message: validateServerError(error) }
 	}
 }

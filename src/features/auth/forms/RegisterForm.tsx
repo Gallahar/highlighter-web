@@ -7,6 +7,7 @@ import { RegisterDto } from '@/shared/types/user.interface'
 import { emailRegexp } from '@/shared/config/constants'
 import { useRouter } from 'next/navigation'
 import { registerUser } from './actions'
+import { localStorageService } from '@/shared/lib/utils/localStorage'
 
 export const RegisterForm = () => {
 	const {
@@ -21,14 +22,15 @@ export const RegisterForm = () => {
 	const router = useRouter()
 
 	const submitHandler = handleSubmit(async (dto) => {
-		const data = await registerUser(dto)
-		if (typeof data !== 'string') {
-			router.push(
-				`register/check-email?email=${data.email}&username=${data.username}`
-			)
+		const { error, message } = await registerUser(dto)
+		if (!error) {
+			localStorageService.setUserEmail(dto.email)
+			router.push('register/check-email')
 		} else {
-			alert(data)
+			alert(message)
 		}
+
+		//toaster here, and redirect only if error is false, remove else statement.
 	})
 
 	return (

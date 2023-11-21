@@ -1,18 +1,24 @@
 import ky from 'ky'
 import { logger } from '../lib/utils/logger'
+import { ErrorFromServer } from '../types/utility-types.interface'
 
 const baseApi = ky.create({
-	credentials: 'include',
+	// credentials: 'include',
 	hooks: {
 		beforeError: [
 			async (error) => {
-				const result = await error.response.json()
+				const { response } = error
+				const cloneBody = response.clone()
+				const result: ErrorFromServer = await cloneBody.json()
 				if (result && error.message) {
 					const { message: data } = result
 					let messages
+					let consoleMessages
 					if (Array.isArray(data)) {
-						messages = data.join('\n')
+						consoleMessages = data.join('\n')
+						messages = data.join(' ')
 					} else {
+						consoleMessages = data
 						messages = data
 					}
 					logger.error(
@@ -28,7 +34,10 @@ const baseApi = ky.create({
 })
 
 const authApi = baseApi.extend({
-	prefixUrl: process.env.USER_API_URL,
+	prefixUrl: process.env.AUTH_API_URL,
+})
+const authApiClient = baseApi.extend({
+	prefixUrl: process.env.NEXT_PUBLIC_AUTH_API_URL,
 })
 
 const highLightApi = baseApi.extend({
@@ -41,4 +50,12 @@ const categoryApi = baseApi.extend({ prefixUrl: process.env.CATEGORY_API_URL })
 
 const fileApi = baseApi.extend({ prefixUrl: process.env.FILE_API_URL })
 
-export { baseApi, authApi, highLightApi, gameApi, categoryApi, fileApi }
+export {
+	baseApi,
+	authApi,
+	authApiClient,
+	highLightApi,
+	gameApi,
+	categoryApi,
+	fileApi,
+}
