@@ -1,18 +1,18 @@
 'use client'
 import { Input } from '@/shared/ui/fields/Input'
 import s from './form.module.scss'
-import { baseApi } from '@/shared/api'
 import { Button } from '@/shared/ui/buttons/Button'
 import { useForm } from 'react-hook-form'
 import { RegisterDto } from '@/shared/types/user.interface'
 import { emailRegexp } from '@/shared/config/constants'
 import { useRouter } from 'next/navigation'
+import { registerUser } from './actions'
 
 export const RegisterForm = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isLoading },
 	} = useForm<RegisterDto>({
 		mode: 'onChange',
 		reValidateMode: 'onBlur',
@@ -21,19 +21,13 @@ export const RegisterForm = () => {
 	const router = useRouter()
 
 	const submitHandler = handleSubmit(async (dto) => {
-		try {
-			const response = await baseApi
-				.post('api/auth/register', {
-					json: dto,
-				})
-				.json<{ email: string; username: string }>()
-
-			console.log(response)
+		const data = await registerUser(dto)
+		if (typeof data !== 'string') {
 			router.push(
-				`register/check-email?email=${response.email}&username=${response.username}`
+				`register/check-email?email=${data.email}&username=${data.username}`
 			)
-		} catch (error) {
-			console.log(error)
+		} else {
+			alert(data)
 		}
 	})
 
@@ -76,7 +70,7 @@ export const RegisterForm = () => {
 				})}
 			/>
 			<Button type='submit' variant='filled'>
-				Create
+				{isLoading ? 'Processing' : 'Create'}
 			</Button>
 		</form>
 	)

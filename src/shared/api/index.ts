@@ -13,12 +13,13 @@ const baseApi = ky.create({
 					if (Array.isArray(data)) {
 						messages = data.join('\n')
 					} else {
-						messages = `${data}\n`
+						messages = data
 					}
-
 					logger.error(
 						`${error.message}\nError messages from server:\n${messages}`
 					)
+					error.name = 'ServerError'
+					error.message = messages
 				}
 				return error
 			},
