@@ -4,10 +4,17 @@ import s from './form.module.scss'
 import { Button } from '@/shared/ui/buttons/Button'
 import { useForm } from 'react-hook-form'
 import { RegisterDto } from '@/shared/types/user.interface'
-import { emailRegexp } from '@/shared/config/constants'
 import { useRouter } from 'next/navigation'
 import { registerUser } from './actions'
 import { localStorageService } from '@/shared/lib/utils/localStorage'
+import {
+	emailFields,
+	emailValidation,
+	passwordFields,
+	passwordValidation,
+	usernameFields,
+	usernameValidation,
+} from './constants'
 
 export const RegisterForm = () => {
 	const {
@@ -49,40 +56,19 @@ export const RegisterForm = () => {
 	return (
 		<form onSubmit={submitHandler} className={s.form}>
 			<Input
-				label='e-mail'
-				type='email'
+				{...emailFields}
 				error={errors.email?.message}
-				{...register('email', {
-					required: 'Email is required',
-					pattern: {
-						value: emailRegexp,
-						message: 'Incorrect format of email',
-					},
-				})}
+				{...register('email', emailValidation)}
 			/>
 			<Input
-				label='username'
-				type='text'
+				{...usernameFields}
 				error={errors.username?.message}
-				{...register('username', {
-					required: 'Name is required',
-					minLength: {
-						value: 4,
-						message: 'Name should be at least 4th length ',
-					},
-				})}
+				{...register('username', usernameValidation)}
 			/>
 			<Input
-				label='password'
-				type='password'
+				{...passwordFields}
 				error={errors.password?.message}
-				{...register('password', {
-					required: 'Password is required',
-					minLength: {
-						value: 8,
-						message: 'Password should be at least 8th length',
-					},
-				})}
+				{...register('password', passwordValidation)}
 			/>
 			<Button type='submit' variant='filled'>
 				Create

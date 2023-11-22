@@ -1,3 +1,5 @@
+'use client'
+
 export const localStorageService = {
 	getUserEmail: () => {
 		return localStorage.getItem('email')
