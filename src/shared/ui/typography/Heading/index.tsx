@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import s from './heading.module.scss'
-import { ccn } from '@/shared/lib/utils/cсn'
+import { ccn } from '@/shared/lib/utils/client/cсn'
 
 interface HeadingProps {
 	className?: string

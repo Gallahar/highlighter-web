@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { RegisterDto } from '@/shared/types/user.interface'
 import { useRouter } from 'next/navigation'
 import { registerUser } from './actions'
-import { localStorageService } from '@/shared/lib/utils/localStorage'
+import { localStorageService } from '@/shared/lib/utils/client/localStorage'
 import {
 	emailFields,
 	emailValidation,
@@ -30,27 +30,17 @@ export const RegisterForm = () => {
 	const router = useRouter()
 
 	const submitHandler = handleSubmit(async (dto) => {
-		const { error, message } = await registerUser(dto)
-		if (!error) {
+		const { isError, fieldErrors } = await registerUser(dto)
+		if (!isError) {
 			localStorageService.setUserEmail(dto.email)
 			router.push('register/check-email')
 		} else {
-			if (message.includes('Email is already used.')) {
-				setError('email', {
-					message: Array.isArray(message)
-						? message.find((e) => e === 'Email is already used.')
-						: message,
-				})
-			} else if (message.includes('Username is already used.')) {
-				setError('username', {
-					message: Array.isArray(message)
-						? message.find((e) => e === 'Username is already used.')
-						: message,
-				})
-			}
+			Object.entries(fieldErrors).forEach(([fieldName, fieldError]) => {
+				setError(fieldName as any, { message: fieldError})
+			})
 		}
 
-		//toaster here, and redirect only if error is false, remove else statement.
+		// toaster here, and redirect only if error is false, remove else statement.
 	})
 
 	return (

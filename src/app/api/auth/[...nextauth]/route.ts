@@ -1,4 +1,4 @@
-import { authOptions } from '@/shared/lib/utils/nextAuth'
+import { authOptions } from '@/shared/lib/utils/server/nextAuth'
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth from 'next-auth/next'
 

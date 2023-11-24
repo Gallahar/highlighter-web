@@ -1,5 +1,5 @@
 import s from './divider.module.scss'
-import { ccn } from '@/shared/lib/utils/cсn'
+import { ccn } from '@/shared/lib/utils/client/cсn'
 import { ComponentPropsWithoutRef } from 'react'
 
 export const Divider = ({

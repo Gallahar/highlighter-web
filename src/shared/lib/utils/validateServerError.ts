@@ -1,10 +1,14 @@
 import { HTTPError } from 'ky'
+import { ErrorFromServer } from '@/shared/types/utility-types.interface'
+import { logger } from './logger'
 
-export function validateServerError(error: unknown) {
-	if (error instanceof HTTPError && error.name === 'ServerError') {
-		const messages = error.message.split('#')
-		return messages.length > 1 ? messages : error.message
+export async function validateServerError(error: unknown) {
+	if (error instanceof HTTPError) {
+		const response: ErrorFromServer = await error.response.clone().json()
+		return response
+	} else if (error instanceof Error) {
+		return error.message
 	} else {
-		return 'Something went wrong'
+		return 'Unhandled error'
 	}
 }

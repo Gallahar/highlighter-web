@@ -1,5 +1,4 @@
 import { authApi } from '@/shared/api'
-import { parse } from 'cookie'
 import { NextApiRequest, NextApiResponse } from 'next'
 import type { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
@@ -21,6 +20,7 @@ export const authOptions: NextAuthOptionsCallback = (req, res) => {
 		},
 		providers: [
 			CredentialsProvider({
+				id: 'sign-in',
 				name: 'Sign in',
 				credentials: {
 					email: {
@@ -38,24 +38,36 @@ export const authOptions: NextAuthOptionsCallback = (req, res) => {
 						const response = await authApi.post('login', {
 							json: credentials,
 						})
-						const apiCookies = response.headers.getSetCookie()
-						if (apiCookies && apiCookies.length > 0) {
-							apiCookies.forEach((cookie) => {
-								const parsedCookie = parse(cookie)
-								const [cookieName, cookieValue] =
-									Object.entries(parsedCookie)[0]
-								const httpOnly = cookie.includes('HttpOnly')
-								console.log()
+						const token = response.headers.get('Bearer')
+						if (token) {
+							cookies().set('Bearer', token)
+						}
 
-								cookies().set({
-									name: cookieName,
-									value: cookieValue,
-									httpOnly: httpOnly,
-									path: parsedCookie.path,
-									expires: new Date(parsedCookie['Expires']),
-									secure: true,
-								})
-							})
+						return response.json()
+					} catch (error) {
+						console.log(error)
+						return null
+					}
+				},
+			}),
+			CredentialsProvider({
+				id: 'confirmed-email',
+				name: 'Confirmed Email',
+				credentials: {},
+				async authorize(_) {
+					const authCookie = cookies().get('Bearer')
+					if (!authCookie) {
+						return null
+					}
+					const { name, value } = authCookie
+					try {
+						const response = await authApi.get('refresh', {
+							headers: { Authorization: `Bearer ${value}` },
+						})
+
+						const token = response.headers.get('Bearer')
+						if (token) {
+							cookies().set('Bearer', token)
 						}
 
 						return response.json()
@@ -68,19 +80,24 @@ export const authOptions: NextAuthOptionsCallback = (req, res) => {
 		],
 		callbacks: {
 			session: ({ session, token, user }) => {
-				console.log(token)
 				session.user = user
 				return session
 			},
 			jwt: ({ token, user, account, session, profile }) => {
-				console.log(account, session, profile, token)
 				return { ...token, user }
+			},
+			redirect: ({ baseUrl, url }) => {
+				if (url.startsWith('http://')) {
+					return url
+				} else {
+					return `${baseUrl}${url}`
+				}
 			},
 		},
 		events: {
 			signOut: ({ session, token }) => {
 				cookies().set({
-					name: 'Set-cookie',
+					name: 'Bearer',
 					value: '',
 					maxAge: 0,
 				})

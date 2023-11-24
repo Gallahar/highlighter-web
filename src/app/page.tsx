@@ -12,6 +12,7 @@ export default async function Home() {
 
 	return (
 		<main>
+			{user && user.user.email}
 			<Divider />
 			<Logo />
 		</main>

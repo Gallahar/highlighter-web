@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 import s from './input.module.scss'
+import { ccn } from '@/shared/lib/utils/client/cсn'
 
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
 	error?: string
@@ -9,10 +10,14 @@ interface InputProps extends ComponentPropsWithoutRef<'input'> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
 	({ className, id, error, label, ...rest }, ref) => {
 		return (
-			<div className={s.inputWrapper}>
+			<div className={ccn(s.inputWrapper, className)}>
 				{label && <label htmlFor={id}>{label}</label>}
 				<input ref={ref} id={id} className={s.input} {...rest} />
-				{error && <p className={s.error}>{error}</p>}
+				{error && (
+					<p role='alert' className={s.error}>
+						{error}
+					</p>
+				)}
 			</div>
 		)
 	}

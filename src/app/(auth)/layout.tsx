@@ -9,10 +9,10 @@ export default async function AuthLayout({
 }: {
 	children: React.ReactNode
 }) {
-	const session = await getServerSession()
-	if (session?.user) {
-		redirect('/games')
-	}
+	// const session = await getServerSession()
+	// if (session?.user) {
+	// 	redirect('/games')
+	// }
 
 	return (
 		<div className={s.layout}>

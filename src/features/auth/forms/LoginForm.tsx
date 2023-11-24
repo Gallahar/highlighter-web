@@ -24,7 +24,7 @@ export const LoginForm = () => {
 	const callbackUrl = searchParams.get('callbackUrl') || '/'
 
 	const onSubmit = async (dto: LoginDto) => {
-		await signIn('credentials', { ...dto, redirect: false, callbackUrl })
+		await signIn('sign-in', { ...dto, redirect: false, callbackUrl })
 	}
 
 	return (

@@ -1,34 +1,49 @@
 import ky from 'ky'
 import { logger } from '../lib/utils/logger'
 import { ErrorFromServer } from '../types/utility-types.interface'
+import { cookiesService } from '../lib/utils/cookiesService'
 
 const baseApi = ky.create({
-	// credentials: 'include',
+	headers: {
+		'Access-Control-Allow-Origin':
+			process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL,
+	},
+	credentials: 'include',
 	hooks: {
 		beforeError: [
 			async (error) => {
 				const { response } = error
 				const cloneBody = response.clone()
 				const result: ErrorFromServer = await cloneBody.json()
-				if (result && error.message) {
+				if (result && result.message) {
 					const { message: data } = result
-					let messages
 					let consoleMessages
 					if (Array.isArray(data)) {
-						logger.success('true')
 						consoleMessages = data.join('\n')
-						messages = data.join('#')
 					} else {
 						consoleMessages = data
-						messages = data
 					}
 					logger.error(
 						`${error.response.statusText}\nError messages from server:\n${consoleMessages}`
 					)
-					error.name = 'ServerError'
-					error.message = messages
 				}
 				return error
+			},
+		],
+		afterResponse: [
+			(_request, _options, response) => {
+				const token = response.headers.get('Bearer')
+				if (token) {
+					cookiesService.setAuthToken(token)
+				}
+			},
+		],
+		beforeRequest: [
+			({ headers }) => {
+				const token = cookiesService.getAuthToken()
+				if (token && headers) {
+					headers.set('Authorization',`Bearer ${token}`)
+				}
 			},
 		],
 	},
@@ -60,3 +75,4 @@ export {
 	categoryApi,
 	fileApi,
 }
+//Todo: replace multiple constants with NEXT_PUBLIC_API || API like with baseInstance. 

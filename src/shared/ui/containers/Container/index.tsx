@@ -1,4 +1,4 @@
-import { ccn } from '@/shared/lib/utils/cсn'
+import { ccn } from '@/shared/lib/utils/client/cсn'
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 import s from './container.module.scss'
 

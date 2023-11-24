@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react'
 import s from './custom-link.module.scss'
 import Link from 'next/link'
-import { ccn } from '@/shared/lib/utils/cсn'
+import { ccn } from '@/shared/lib/utils/client/cсn'
 
 interface CustomLinkProps extends ComponentPropsWithoutRef<typeof Link> {
 	isAccent?: boolean
