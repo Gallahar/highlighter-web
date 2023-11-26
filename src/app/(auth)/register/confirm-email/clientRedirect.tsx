@@ -17,7 +17,7 @@ export const ClientRedirect = ({
 				router.push('/login')
 			}
 			if (redirectBehavior === 'confirmed') {
-				signIn('confirmed-email', { callbackUrl: '/games' })
+				signIn('confirmed-email', { callbackUrl: '/' })
 			}
 		}, 3000)
 

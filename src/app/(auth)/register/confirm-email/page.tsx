@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { validateServerError } from '@/shared/lib/utils/validateServerError'
 import { authApiClient } from '@/shared/api'
 import { Spinner } from '@/shared/ui/loaders/Spinner'
+import { localStorageService } from '@/shared/lib/utils/client/localStorage'
 
 export default function EmailConfirmation({
 	searchParams,
@@ -33,6 +34,7 @@ export default function EmailConfirmation({
 				setTitle('Thanks for joining Highlighter!')
 				setText('Your account was successfully activated')
 				setRedirectBehavior('confirmed')
+				localStorageService.removeUserEmail()
 			} catch (error) {
 				setTitle('Something went wrong!')
 				const errors = await validateServerError(error)
