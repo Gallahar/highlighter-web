@@ -11,7 +11,7 @@ export default async function Login() {
 			<LoginForm />
 			<div className={s.linkSection}>
 				<BaseText isItalic>
-					Don't have an account yet?{' '}
+					{'Dont have an account yet?'}
 					<CustomLink isAccent href={'/register'}>
 						Create here
 					</CustomLink>
