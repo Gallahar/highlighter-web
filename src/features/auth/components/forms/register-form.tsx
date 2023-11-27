@@ -4,7 +4,7 @@ import s from './form.module.scss'
 import { useForm } from 'react-hook-form'
 import type { RegisterDto } from '@/shared/types'
 import { useRouter } from 'next/navigation'
-import { registerUser } from '../api/server/register-user'
+import { registerUser } from '../../api/server/register-user'
 import { localStorageService } from '@/shared/lib'
 import {
 	emailFields,
@@ -13,7 +13,7 @@ import {
 	passwordValidation,
 	usernameFields,
 	usernameValidation,
-} from '../config/auth-form-fields'
+} from '../../config/auth-form-fields'
 import { PrimaryButton, Input } from '@/shared/ui'
 
 export const RegisterForm = () => {

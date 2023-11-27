@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-export const ClientRedirect = ({
+export const UserRedirect = ({
 	redirectBehavior,
 }: {
 	redirectBehavior: 'confirmed' | 'already confirmed' | string

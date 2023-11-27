@@ -9,7 +9,7 @@ import {
 	emailValidation,
 	passwordFields,
 	passwordValidation,
-} from '../config/auth-form-fields'
+} from '../../config/auth-form-fields'
 import { PrimaryButton, Input } from '@/shared/ui'
 
 export const LoginForm = () => {

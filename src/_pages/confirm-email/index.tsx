@@ -4,7 +4,7 @@ import { authApi } from '@/shared/api'
 import { localStorageService, validateServerError } from '@/shared/lib'
 import { Spinner, Heading, BaseText, CustomLink } from '@/shared/ui'
 import { useState, useEffect } from 'react'
-import { ClientRedirect } from './components'
+import { AuthMessage, UserRedirect } from '@/features/auth'
 import s from './confirm-email.module.scss'
 
 export const ConfirmEmail = ({ token }: { token: string }) => {
@@ -52,15 +52,11 @@ export const ConfirmEmail = ({ token }: { token: string }) => {
 	return (
 		<section className={s.pageWrapper}>
 			{isLoading ? (
-				<Spinner size='md' />
+				<Spinner size='lg' />
 			) : (
 				<>
-					<Heading variant='h1'>{title}</Heading>
-					{text && <BaseText>{text}</BaseText>}
-					<CustomLink isAccent href={'/'}>
-						Return to Homepage
-					</CustomLink>
-					<ClientRedirect redirectBehavior={redirectBehavior} />
+					<AuthMessage title={title} text={text} />
+					<UserRedirect redirectBehavior={redirectBehavior} />
 				</>
 			)}
 		</section>

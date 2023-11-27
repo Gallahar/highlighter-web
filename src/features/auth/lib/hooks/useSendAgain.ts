@@ -1,3 +1,5 @@
+'use client'
+
 import { authApi } from '@/shared/api'
 import {
 	localStorageService,

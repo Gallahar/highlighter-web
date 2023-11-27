@@ -1,13 +1,7 @@
 'use client'
 
-import {
-	Spinner,
-	Heading,
-	BaseText,
-	PrimaryButton,
-	CustomLink,
-} from '@/shared/ui'
-import { useSendAgain } from './lib'
+import { Spinner, Heading, BaseText, PrimaryButton } from '@/shared/ui'
+import { AuthMessage, useSendAgain } from '@/features/auth'
 import s from './check-email.module.scss'
 
 export const CheckEmail = () => {
@@ -39,24 +33,19 @@ export const CheckEmail = () => {
 						>
 							{buttonString}
 						</PrimaryButton>
-						<BaseText className={s.link}>
-							Wrong E-mail?
-							<CustomLink isAccent href={'/'}>
-								Change here
-							</CustomLink>
-						</BaseText>
 					</div>
 				</>
 			)}
 			{error && (
-				<>
-					<Heading variant='h1'>Something went wrong...</Heading>
-					<BaseText>{error}</BaseText>
-					<CustomLink className={s.linkToHomePage} href={'/'}>
-						Return to Home Page
-					</CustomLink>
-				</>
+				<AuthMessage
+					title={userData ? 'Something wen wrong' : ''}
+					text={error}
+				/>
 			)}
 		</section>
 	)
 }
+
+// РАЗБИТЬ ю ПЕРЕИСПОЛЬЗОВАТЬ / создать сущность
+
+// убрать изменение эмейла.
