@@ -1,1 +1,1 @@
-export * from './useCountDown'
+export * from './use-countdown'

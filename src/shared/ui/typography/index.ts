@@ -1,2 +1,2 @@
-export * from './BaseText'
-export * from './Heading'
+export * from './base-text'
+export * from './heading'

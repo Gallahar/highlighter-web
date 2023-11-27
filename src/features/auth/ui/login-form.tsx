@@ -2,7 +2,7 @@
 
 import s from './form.module.scss'
 import { useForm } from 'react-hook-form'
-import { LoginDto } from '@/shared/types/user.interface'
+import type { LoginDto } from '@/shared/types/user.interface'
 import { signIn } from 'next-auth/react'
 import {
 	emailFields,

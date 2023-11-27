@@ -1,6 +1,6 @@
 
 
-import { CheckEmail } from '@/_pages/CheckEmail'
+import { CheckEmail } from '@/_pages/check-email'
 
 export default function CheckEmailPage() {
 	return <CheckEmail />

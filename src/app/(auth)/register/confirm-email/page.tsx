@@ -1,4 +1,4 @@
-import { ConfirmEmail } from '@/_pages/ConfirmEmail'
+import { ConfirmEmail } from '@/_pages/confirm-email'
 
 export default function EmailConfirmationPage({
 	searchParams,

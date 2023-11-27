@@ -1,2 +1,2 @@
-export * from './cookiesService'
-export * from './localStorage'
+export * from './cookies-service'
+export * from './local-storage'

@@ -1,6 +1,6 @@
-import { Logo } from '@/shared/ui/backgrounds/Logo'
+import { Logo } from '@/shared/ui/backgrounds/logo'
 import s from './layout.module.scss'
-import { Divider } from '@/shared/ui/backgrounds/Divider'
+import { Divider } from '@/shared/ui/backgrounds/divider'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 

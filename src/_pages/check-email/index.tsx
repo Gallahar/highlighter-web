@@ -7,7 +7,7 @@ import {
 	PrimaryButton,
 	CustomLink,
 } from '@/shared/ui'
-import { useSendAgain } from './useSendAgain'
+import { useSendAgain } from './lib'
 import s from './check-email.module.scss'
 
 export const CheckEmail = () => {

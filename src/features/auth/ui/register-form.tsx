@@ -2,7 +2,7 @@
 
 import s from './form.module.scss'
 import { useForm } from 'react-hook-form'
-import { RegisterDto } from '@/shared/types'
+import type { RegisterDto } from '@/shared/types'
 import { useRouter } from 'next/navigation'
 import { registerUser } from '../api/server/register-user'
 import { localStorageService } from '@/shared/lib'

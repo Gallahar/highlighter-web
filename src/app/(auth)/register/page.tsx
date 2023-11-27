@@ -1,4 +1,4 @@
-import { Register } from '@/_pages/Register'
+import { Register } from '@/_pages/register'
 
 export default function RegisterPage() {
 	return <Register />

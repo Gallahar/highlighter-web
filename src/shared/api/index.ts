@@ -1,7 +1,7 @@
 import ky from 'ky'
 import { logger } from '../lib/utils/logger'
-import { ErrorFromServer } from '../types/utility-types.interface'
-import { cookiesService } from '../lib/services/cookiesService'
+import type { ErrorFromServer } from '../types/utility-types.interface'
+import { cookiesService } from '../lib/services/cookies-service'
 
 const baseApi = ky.create({
 	headers: {
@@ -64,4 +64,3 @@ const categoryApi = baseApi.extend({ prefixUrl: process.env.CATEGORY_API_URL })
 const fileApi = baseApi.extend({ prefixUrl: process.env.FILE_API_URL })
 
 export { baseApi, authApi, highLightApi, gameApi, categoryApi, fileApi }
-//Todo: replace multiple constants with NEXT_PUBLIC_API || API like with baseInstance.

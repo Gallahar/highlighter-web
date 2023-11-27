@@ -1,2 +1,2 @@
 
-export * from './setCookiesServer'
+export * from './set-cookies-server'

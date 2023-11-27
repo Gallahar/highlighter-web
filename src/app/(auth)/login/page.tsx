@@ -1,4 +1,4 @@
-import { Login } from '@/_pages/Login'
+import { Login } from '@/_pages/login'
 import type { Metadata } from 'next'
 //example meta
 
