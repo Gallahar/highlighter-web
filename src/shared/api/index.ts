@@ -1,7 +1,7 @@
 import ky from 'ky'
 import { logger } from '../lib/utils/logger'
 import { ErrorFromServer } from '../types/utility-types.interface'
-import { cookiesService } from '../lib/utils/cookiesService'
+import { cookiesService } from '../lib/services/cookiesService'
 
 const baseApi = ky.create({
 	headers: {
@@ -42,7 +42,7 @@ const baseApi = ky.create({
 			({ headers }) => {
 				const token = cookiesService.getAuthToken()
 				if (token && headers) {
-					headers.set('Authorization',`Bearer ${token}`)
+					headers.set('Authorization', `Bearer ${token}`)
 				}
 			},
 		],
@@ -50,10 +50,7 @@ const baseApi = ky.create({
 })
 
 const authApi = baseApi.extend({
-	prefixUrl: process.env.AUTH_API_URL,
-})
-const authApiClient = baseApi.extend({
-	prefixUrl: process.env.NEXT_PUBLIC_AUTH_API_URL,
+	prefixUrl: process.env.AUTH_API_URL || process.env.NEXT_PUBLIC_AUTH_API_URL,
 })
 
 const highLightApi = baseApi.extend({
@@ -66,13 +63,5 @@ const categoryApi = baseApi.extend({ prefixUrl: process.env.CATEGORY_API_URL })
 
 const fileApi = baseApi.extend({ prefixUrl: process.env.FILE_API_URL })
 
-export {
-	baseApi,
-	authApi,
-	authApiClient,
-	highLightApi,
-	gameApi,
-	categoryApi,
-	fileApi,
-}
-//Todo: replace multiple constants with NEXT_PUBLIC_API || API like with baseInstance. 
+export { baseApi, authApi, highLightApi, gameApi, categoryApi, fileApi }
+//Todo: replace multiple constants with NEXT_PUBLIC_API || API like with baseInstance.

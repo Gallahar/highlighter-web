@@ -1,0 +1,7 @@
+export * from './categories.interface'
+export * from './chat.interface'
+export * from './game.interface'
+export * from './highlight.interface'
+export * from './notification.interface'
+export * from './user.interface'
+export * from './utility-types.interface'

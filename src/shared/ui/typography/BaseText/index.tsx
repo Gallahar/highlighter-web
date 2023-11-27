@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
 import s from './base-text.module.scss'
-import { ccn } from '@/shared/lib/utils/client/cсn'
+import { ccn } from '@/shared/lib'
 
 interface BaseTextProps extends ComponentPropsWithoutRef<'p'> {
 	isItalic?: boolean

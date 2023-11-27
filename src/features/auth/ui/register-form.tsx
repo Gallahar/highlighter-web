@@ -1,11 +1,11 @@
 'use client'
-import { Input } from '@/shared/ui/fields/Input'
+
 import s from './form.module.scss'
 import { useForm } from 'react-hook-form'
-import { RegisterDto } from '@/shared/types/user.interface'
+import { RegisterDto } from '@/shared/types'
 import { useRouter } from 'next/navigation'
 import { registerUser } from '../api/server/register-user'
-import { localStorageService } from '@/shared/lib/utils/client/localStorage'
+import { localStorageService } from '@/shared/lib'
 import {
 	emailFields,
 	emailValidation,
@@ -14,7 +14,7 @@ import {
 	usernameFields,
 	usernameValidation,
 } from '../config/auth-form-fields'
-import { PrimaryButton } from '@/shared/ui'
+import { PrimaryButton, Input } from '@/shared/ui'
 
 export const RegisterForm = () => {
 	const {

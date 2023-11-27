@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 import s from './input.module.scss'
-import { ccn } from '@/shared/lib/utils/client/cсn'
+import { ccn } from '@/shared/lib/utils'
 
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
 	error?: string

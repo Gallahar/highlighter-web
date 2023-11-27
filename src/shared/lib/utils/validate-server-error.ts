@@ -1,6 +1,6 @@
 import { HTTPError } from 'ky'
 import { ErrorFromServer } from '@/shared/types/utility-types.interface'
-import { logger } from './logger'
+
 
 export async function validateServerError(error: unknown) {
 	if (error instanceof HTTPError) {

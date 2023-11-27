@@ -1,17 +1,16 @@
 'use client'
-import { Input } from '@/shared/ui/fields/Input'
+
 import s from './form.module.scss'
 import { useForm } from 'react-hook-form'
 import { LoginDto } from '@/shared/types/user.interface'
 import { signIn } from 'next-auth/react'
-import { useSearchParams } from 'next/navigation'
 import {
 	emailFields,
 	emailValidation,
 	passwordFields,
 	passwordValidation,
 } from '../config/auth-form-fields'
-import { PrimaryButton } from '@/shared/ui'
+import { PrimaryButton, Input } from '@/shared/ui'
 
 export const LoginForm = () => {
 	const {
@@ -20,11 +19,8 @@ export const LoginForm = () => {
 		formState: { errors },
 	} = useForm<LoginDto>({ mode: 'onChange', reValidateMode: 'onBlur' })
 
-	const searchParams = useSearchParams()
-	const callbackUrl = searchParams.get('callbackUrl') || '/'
-
 	const onSubmit = async (dto: LoginDto) => {
-		await signIn('sign-in', { ...dto, redirect: false, callbackUrl })
+		await signIn('sign-in', { ...dto, redirect: false, callbackUrl: '/' })
 	}
 
 	return (
