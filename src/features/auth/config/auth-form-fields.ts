@@ -1,4 +1,4 @@
-import { emailRegexp } from '@/shared/config/constants'
+import { emailRegexp } from '@/shared/config'
 
 const emailFields = {
 	id: 'email',

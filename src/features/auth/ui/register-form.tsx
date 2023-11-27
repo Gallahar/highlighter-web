@@ -1,11 +1,10 @@
 'use client'
 import { Input } from '@/shared/ui/fields/Input'
 import s from './form.module.scss'
-import { Button } from '@/shared/ui/buttons/Button'
 import { useForm } from 'react-hook-form'
 import { RegisterDto } from '@/shared/types/user.interface'
 import { useRouter } from 'next/navigation'
-import { registerUser } from './actions'
+import { registerUser } from '../api/server/register-user'
 import { localStorageService } from '@/shared/lib/utils/client/localStorage'
 import {
 	emailFields,
@@ -14,7 +13,8 @@ import {
 	passwordValidation,
 	usernameFields,
 	usernameValidation,
-} from './constants'
+} from '../config/auth-form-fields'
+import { PrimaryButton } from '@/shared/ui'
 
 export const RegisterForm = () => {
 	const {
@@ -36,7 +36,7 @@ export const RegisterForm = () => {
 			router.push('register/check-email')
 		} else {
 			Object.entries(fieldErrors).forEach(([fieldName, fieldError]) => {
-				setError(fieldName as any, { message: fieldError})
+				setError(fieldName as any, { message: fieldError })
 			})
 		}
 
@@ -60,9 +60,9 @@ export const RegisterForm = () => {
 				error={errors.password?.message}
 				{...register('password', passwordValidation)}
 			/>
-			<Button type='submit' variant='filled'>
+			<PrimaryButton type='submit' variant='filled'>
 				Create
-			</Button>
+			</PrimaryButton>
 		</form>
 	)
 }

@@ -3,14 +3,20 @@
 import s from './check-email.module.scss'
 import { Heading } from '@/shared/ui/typography/Heading'
 import { BaseText } from '@/shared/ui/typography/BaseText'
-import { Button } from '@/shared/ui/buttons/Button'
 import { CustomLink } from '@/shared/ui/links/CustomLink'
 import { Spinner } from '@/shared/ui/loaders/Spinner'
 import { useSendAgain } from './useSendAgain'
+import { PrimaryButton } from '@/shared/ui'
 
 export default function CheckEmail() {
-	const { error, isLoading, userData, wasSended, handleSendAgain, buttonString } =
-		useSendAgain()
+	const {
+		error,
+		isLoading,
+		userData,
+		wasSended,
+		handleSendAgain,
+		buttonString,
+	} = useSendAgain()
 
 	return (
 		<section className={s.pageWrapper}>
@@ -24,13 +30,13 @@ export default function CheckEmail() {
 							<span className={s.accent}>{userData.email}</span>. Please follow
 							the steps in this letter to confirm your account.
 						</BaseText>
-						<Button
+						<PrimaryButton
 							onClick={handleSendAgain}
 							variant={wasSended ? 'default' : 'filled'}
 							disabled={wasSended}
 						>
 							{buttonString}
-						</Button>
+						</PrimaryButton>
 						<BaseText className={s.link}>
 							Wrong E-mail?
 							<CustomLink isAccent href={'/'}>

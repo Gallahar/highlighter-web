@@ -2,16 +2,16 @@ import { ccn } from '@/shared/lib/utils/client/cсn'
 import { ComponentPropsWithoutRef } from 'react'
 import s from './button.module.scss'
 
-interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
+interface PrimaryButtonProps extends ComponentPropsWithoutRef<'button'> {
 	variant?: 'default' | 'filled'
 }
 
-export const Button = ({
+export const PrimaryButton = ({
 	className,
 	variant = 'default',
 	children,
 	...rest
-}: ButtonProps) => {
+}: PrimaryButtonProps) => {
 	return (
 		<button className={ccn(s.button, s[variant], className)} {...rest}>
 			{children}

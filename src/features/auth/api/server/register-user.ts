@@ -1,8 +1,9 @@
 'use server'
 
 import { authApi } from '@/shared/api'
-import { validateServerError } from '@/shared/lib/utils/validateServerError'
 import { RegisterDto } from '@/shared/types/user.interface'
+import { REGISTER_USER_RESPONSES } from '../../config/auth-responses'
+import { validateServerError } from '@/shared/lib/utils/validate-server-error'
 
 interface ResponseErrors {
 	isError: boolean
@@ -32,16 +33,24 @@ export async function registerUser(dto: RegisterDto) {
 			isError: true,
 			fieldErrors: { username: '', email: '' },
 		}
-		if(typeof validatedErrors==='string'){
+		if (typeof validatedErrors === 'string') {
 			responseErrors.message = validatedErrors
 			return responseErrors
 		}
 
-		if (validatedErrors.message.includes('Email is already used.')) {
+		if (
+			validatedErrors.message.includes(
+				REGISTER_USER_RESPONSES.EMAIL_IS_ALREADY_USED
+			)
+		) {
 			responseErrors.fieldErrors.email = 'Email is already used.'
 		}
 
-		if (validatedErrors.message.includes('Username is already used.')) {
+		if (
+			validatedErrors.message.includes(
+				REGISTER_USER_RESPONSES.USERNAME_IS_ALREADY_USED
+			)
+		) {
 			responseErrors.fieldErrors.username = 'Username is already used.'
 		}
 

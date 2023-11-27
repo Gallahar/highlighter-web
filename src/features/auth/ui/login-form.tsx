@@ -1,7 +1,6 @@
 'use client'
 import { Input } from '@/shared/ui/fields/Input'
 import s from './form.module.scss'
-import { Button } from '@/shared/ui/buttons/Button'
 import { useForm } from 'react-hook-form'
 import { LoginDto } from '@/shared/types/user.interface'
 import { signIn } from 'next-auth/react'
@@ -11,7 +10,8 @@ import {
 	emailValidation,
 	passwordFields,
 	passwordValidation,
-} from './constants'
+} from '../config/auth-form-fields'
+import { PrimaryButton } from '@/shared/ui'
 
 export const LoginForm = () => {
 	const {
@@ -39,9 +39,9 @@ export const LoginForm = () => {
 				error={errors.password?.message}
 				{...register('password', passwordValidation)}
 			/>
-			<Button type='submit' variant='filled'>
+			<PrimaryButton type='submit' variant='filled'>
 				Log in
-			</Button>
+			</PrimaryButton>
 		</form>
 	)
 }

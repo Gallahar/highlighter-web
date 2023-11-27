@@ -1,8 +1,8 @@
-import { LoginForm } from '@/features/auth/forms'
 import { Heading } from '@/shared/ui/typography/Heading'
 import s from './login.module.scss'
 import { CustomLink } from '@/shared/ui/links/CustomLink'
 import { BaseText } from '@/shared/ui/typography/BaseText'
+import { LoginForm } from '@/features/auth'
 
 export default async function Login() {
 	return (
