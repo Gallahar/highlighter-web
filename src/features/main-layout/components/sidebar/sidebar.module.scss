@@ -1,0 +1,35 @@
+.sidebar {
+	width: 100%;
+	max-width: 328px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 62px 40px 51px;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--bg-primary);
+
+	.divider1 {
+		margin-top: 48px;
+	}
+
+	.actionBlock {
+		margin-top: 44px;
+		display: flex;
+		flex-direction: column;
+		gap: 377px;
+	}
+
+	.divider2 {
+		margin-top: 36px;
+	}
+
+	.copyright {
+		margin-top: 36px;
+		color: var(--text-secondary);
+		font-size: 1.5rem;
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: 0.6px;
+	}
+}

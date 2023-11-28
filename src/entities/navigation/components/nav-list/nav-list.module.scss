@@ -1,0 +1,23 @@
+.navigation {
+	margin-inline: -40px;
+
+	> ul {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		list-style: none;
+		> li {
+			background-color: var(--bg-primary);
+			color: var(--text-primary);
+
+			transition: background-color 0.15s ease-in, color 0.15s ease-in;
+
+			&[data-active='true'],
+			&:hover,
+			&:active {
+				background-color: var(--bg-active);
+				color: var(--text-danger);
+			}
+		}
+	}
+}

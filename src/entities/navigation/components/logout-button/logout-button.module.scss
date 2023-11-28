@@ -1,0 +1,12 @@
+.logoutButton {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	> span {
+		color: var(--text-primary);
+		font-size: 1.7rem;
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: 0.68px;
+	}
+}
