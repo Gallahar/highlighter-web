@@ -1,9 +1,6 @@
-import { authOptions } from '@/shared/lib/utils/nextAuth'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { nextAuthOptions } from '@/shared/lib/utils/server/next-auth'
 import NextAuth from 'next-auth/next'
 
-function handler(req: NextApiRequest, res: NextApiResponse) {
-	return NextAuth(req, res, authOptions(req, res))
-}
+const handler = NextAuth(nextAuthOptions)
 
 export { handler as GET, handler as POST }

@@ -1,0 +1,20 @@
+.pageWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 60px;
+
+	.messageWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 43px;
+
+		.accent {
+			font-size: inherit;
+			letter-spacing: inherit;
+			color: var(--text-primary);
+		}
+	}
+}

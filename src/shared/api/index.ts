@@ -1,44 +1,56 @@
 import ky from 'ky'
 import { logger } from '../lib/utils/logger'
-import { ErrorFromServer } from '../types/utility-types.interface'
+import type { ErrorFromServer } from '../types/utility-types.interface'
+import { cookiesService } from '../lib/services/cookies-service'
 
 const baseApi = ky.create({
-	// credentials: 'include',
+	headers: {
+		'Access-Control-Allow-Origin':
+			process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL,
+	},
+	credentials: 'include',
 	hooks: {
 		beforeError: [
 			async (error) => {
 				const { response } = error
 				const cloneBody = response.clone()
 				const result: ErrorFromServer = await cloneBody.json()
-				if (result && error.message) {
+				if (result && result.message) {
 					const { message: data } = result
-					let messages
 					let consoleMessages
 					if (Array.isArray(data)) {
-						logger.success('true')
 						consoleMessages = data.join('\n')
-						messages = data.join('#')
 					} else {
 						consoleMessages = data
-						messages = data
 					}
 					logger.error(
 						`${error.response.statusText}\nError messages from server:\n${consoleMessages}`
 					)
-					error.name = 'ServerError'
-					error.message = messages
 				}
 				return error
+			},
+		],
+		afterResponse: [
+			(_request, _options, response) => {
+				const token = response.headers.get('Bearer')
+				if (token) {
+					cookiesService.setAuthToken(token)
+				}
+			},
+		],
+		beforeRequest: [
+			({ headers }) => {
+				const token = cookiesService.getAuthToken()
+				if (token && headers) {
+					headers.set('Authorization', `Bearer ${token}`)
+				}
 			},
 		],
 	},
 })
 
 const authApi = baseApi.extend({
-	prefixUrl: process.env.AUTH_API_URL,
-})
-const authApiClient = baseApi.extend({
-	prefixUrl: process.env.NEXT_PUBLIC_AUTH_API_URL,
+	prefixUrl: process.env.AUTH_API_URL || process.env.NEXT_PUBLIC_AUTH_API_URL,
 })
 
 const highLightApi = baseApi.extend({
@@ -51,12 +63,4 @@ const categoryApi = baseApi.extend({ prefixUrl: process.env.CATEGORY_API_URL })
 
 const fileApi = baseApi.extend({ prefixUrl: process.env.FILE_API_URL })
 
-export {
-	baseApi,
-	authApi,
-	authApiClient,
-	highLightApi,
-	gameApi,
-	categoryApi,
-	fileApi,
-}
+export { baseApi, authApi, highLightApi, gameApi, categoryApi, fileApi }

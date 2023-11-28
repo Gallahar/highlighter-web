@@ -1,6 +1,6 @@
-import { Logo } from '@/shared/ui/backgrounds/Logo'
+import { Logo } from '@/shared/ui/backgrounds/logo'
 import s from './layout.module.scss'
-import { Divider } from '@/shared/ui/backgrounds/Divider'
+import { Divider } from '@/shared/ui/backgrounds/divider'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
@@ -9,10 +9,10 @@ export default async function AuthLayout({
 }: {
 	children: React.ReactNode
 }) {
-	const session = await getServerSession()
-	if (session?.user) {
-		redirect('/games')
-	}
+	// const session = await getServerSession()
+	// if (session?.user) {
+	// 	redirect('/games')
+	// }
 
 	return (
 		<div className={s.layout}>

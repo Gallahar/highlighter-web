@@ -1,5 +1,5 @@
-import { Divider } from '@/shared/ui/backgrounds/Divider'
-import { Logo } from '@/shared/ui/backgrounds/Logo'
+import { Divider } from '@/shared/ui/backgrounds/divider'
+import { Logo } from '@/shared/ui/backgrounds/logo'
 import s from './page.module.scss'
 import { getServerSession } from 'next-auth'
 
@@ -12,6 +12,7 @@ export default async function Home() {
 
 	return (
 		<main>
+			{user && user.user.email}
 			<Divider />
 			<Logo />
 		</main>
