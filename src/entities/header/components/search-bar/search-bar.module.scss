@@ -1,0 +1,34 @@
+.barWrapper {
+	width: 100%;
+	max-width: 440px;
+	position: relative;
+
+	> input {
+		width: 100%;
+		background-color: transparent;
+		color: var(--text-primary);
+		font-size: 1.7rem;
+		height: 52px;
+		padding: 8px 14px;
+		border-radius: 16px;
+		border: 1px solid var(--text-primary);
+	}
+
+	.icon {
+		position: absolute;
+		right: 14px;
+		top: 8px;
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		> svg {
+			flex-shrink: 0;
+		}
+		> span {
+			background-color: var(--bg-secondary);
+			width: 2px;
+			height: 37px;
+			border-radius: 8px 8px 0 0;
+		}
+	}
+}

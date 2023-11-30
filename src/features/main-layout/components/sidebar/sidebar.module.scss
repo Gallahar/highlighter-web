@@ -1,5 +1,7 @@
 .sidebar {
+	grid-area: S;
 	width: 100%;
+	height: 100%;
 	max-width: 328px;
 	position: fixed;
 	top: 0;
@@ -8,6 +10,9 @@
 	display: flex;
 	flex-direction: column;
 	background-color: var(--bg-primary);
+	> svg {
+		min-height: 28px;
+	}
 
 	.divider1 {
 		margin-top: 48px;
@@ -16,8 +21,11 @@
 	.actionBlock {
 		margin-top: 44px;
 		display: flex;
+		height: 100%;
 		flex-direction: column;
-		gap: 377px;
+		> button {
+			margin-top: auto;
+		}
 	}
 
 	.divider2 {

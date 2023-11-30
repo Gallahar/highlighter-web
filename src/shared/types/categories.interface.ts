@@ -1,10 +1,8 @@
-import { Icon } from 'next/dist/lib/metadata/types/metadata-types'
-import { Game } from './game.interface'
+import {  GamePreview } from './game.interface'
 
-export interface Categories {
+export interface Category {
 	_id: string
 	title: string
-	description: string
-	games: Game[]
-	icon: Icon
+	slug: string
+	games: GamePreview[]
 }

@@ -1,0 +1,19 @@
+.pageWrapper {
+	padding: 44px 40px;
+	background: linear-gradient(
+			180deg,
+			#0c0c0c 16.93%,
+			rgba(12, 12, 12, 0.7) 51.69%,
+			#0c0c0c 82.8%
+		),
+		url('/images/main/categories/category_bg.webp'),
+		lightgray 50% / cover no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+
+	min-height: 75vh;
+
+	display: flex;
+	flex-direction: column;
+	gap: 44px;
+}

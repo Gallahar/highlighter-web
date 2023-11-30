@@ -1,0 +1,8 @@
+.addVideoButton {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	> svg {
+		flex-shrink: 0;
+	}
+}

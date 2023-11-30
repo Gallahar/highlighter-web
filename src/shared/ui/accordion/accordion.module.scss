@@ -1,0 +1,39 @@
+.accordionWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+	.accordionHeader {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		> h2 {
+			font-style: italic;
+		}
+
+		.control {
+			transition: transform 0.2s ease-in-out;
+
+			&[data-open='true'] {
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+	.accordionBody {
+		width: 100%;
+		padding: 5px 5px 5px;
+		display: grid;
+		justify-content: space-between;
+		overflow: hidden;
+		max-height: 180px;
+		grid-auto-rows: 0fr;
+		gap: 25px 34px;
+
+		transition: all 0.25s ease-in-out;
+
+		&[data-open='true'] {
+			max-height: 100vh;
+		}
+	}
+}

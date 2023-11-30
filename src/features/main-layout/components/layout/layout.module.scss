@@ -1,0 +1,13 @@
+.layout {
+	background-image: linear-gradient(180deg, #0c0c0c 16.93%, #0c0c0c 82.8%);
+    position: relative;
+	display: grid;
+	grid-template:
+		'S H' 138px
+		'S M' 1fr / minmax(150px, 328px) 1fr;
+
+	.mainContent {
+		padding-top: 1px;
+		grid-area: M;
+	}
+}

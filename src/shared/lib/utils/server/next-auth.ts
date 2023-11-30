@@ -10,6 +10,8 @@ export const nextAuthOptions = {
 	},
 	session: {
 		strategy: 'jwt',
+		maxAge:
+			new Date().getSeconds() + Number(process.env.JWT_EXPIRATION ?? 3600),
 	},
 	providers: [
 		CredentialsProvider({
@@ -72,12 +74,12 @@ export const nextAuthOptions = {
 		}),
 	],
 	callbacks: {
-		session: ({ session, token, user }) => {
-			session.user = user
+		session: ({ session, token }) => {
+			session.user = token
 			return session
 		},
-		jwt: ({ token, user, account, session, profile }) => {
-			return { ...token, user }
+		jwt: ({ token, user }) => {
+			return { ...user, ...token }
 		},
 		redirect: ({ baseUrl, url }) => {
 			if (url.startsWith('http://')) {
@@ -88,7 +90,7 @@ export const nextAuthOptions = {
 		},
 	},
 	events: {
-		signOut: ({ session, token }) => {
+		signOut: ({ token }) => {
 			cookies().set({
 				name: 'Bearer',
 				value: '',
