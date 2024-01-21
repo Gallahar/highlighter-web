@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: false,
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'highlighter-server-bucket.s3.amazonaws.com',
+				port: '',
+			},
+		],
+	},
 
 	webpack(config, { isServer }) {
 		// Configures webpack to handle SVG files with SVGR. SVGR optimizes and transforms SVG files

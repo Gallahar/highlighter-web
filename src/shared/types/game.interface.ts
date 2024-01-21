@@ -6,3 +6,5 @@ export interface Game {
 	description: string
 	icon: Icon
 }
+
+export type GamePreview = Omit<Game, 'description'> & { slug: string }

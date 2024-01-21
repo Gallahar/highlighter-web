@@ -1,0 +1,13 @@
+.headerWrapper {
+	background: linear-gradient(180deg, #0c0c0c 16.93%, #0c0c0c 82.8%);
+	grid-area: H;
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+	padding: 50px 40px 0;
+	.inner {
+		width: 100%;
+		display: flex;
+		gap: 131px;
+	}
+}

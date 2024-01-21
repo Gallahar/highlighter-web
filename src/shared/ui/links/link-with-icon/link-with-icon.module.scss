@@ -1,0 +1,20 @@
+.linkWithIcon {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	color: currentColor;
+	text-transform: capitalize;
+	font-size: 1.7rem;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: 0.68px;
+	transition: color 0.15s ease-in;
+	padding: 9px 40px;
+
+	> span {
+		font-size: inherit;
+		font-weight: inherit;
+		color: inherit;
+		margin-left: auto;
+	}
+}

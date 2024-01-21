@@ -1,4 +1,4 @@
-import { Categories } from './categories.interface'
+import { Category } from './categories.interface'
 import { Game } from './game.interface'
 import { Comment, User } from './user.interface'
 
@@ -8,7 +8,7 @@ export interface Highlight {
 	content: string[]
 	likes: number
 	by: User
-	categories: Categories[]
+	categories: Category[]
 	game: Game
 	comments: Comment[]
 }

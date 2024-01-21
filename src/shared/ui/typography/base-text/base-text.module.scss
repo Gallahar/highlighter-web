@@ -1,9 +1,17 @@
 .baseText {
-	font-size: 1.8rem;
-	color: var(--text-secondary);
-	letter-spacing: 0.72px;
 	white-space: pre-line;
 	line-height: normal;
+}
+
+.primary {
+	color: var(--text-primary);
+	font-size: 1.7rem;
+	letter-spacing: 0.68px;
+}
+.secondary {
+	color: var(--text-secondary);
+	font-size: 1.8rem;
+	letter-spacing: 0.72px;
 }
 
 .italic {
